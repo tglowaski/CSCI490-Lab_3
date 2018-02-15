@@ -8,6 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     private ListView listView;
@@ -19,9 +21,26 @@ public class MainActivity extends AppCompatActivity {
 
         listView = findViewById(R.id.class_schedule);
 
-        String[] listItems = {"CSCI 230", "CSCI 490", "MUSC 101"};
+        Course course;
 
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems);
+        ArrayList<Course> courses = new ArrayList<>();
+
+        course = new Course();
+        course.setCourseName("Programming I");
+        course.setCourseNumber("CSCI 220");
+        course.setProfessor("Dr. Leclerc");
+        courses.add(course);
+
+        course = new Course();
+        course.setCourseName("Programming II");
+        course.setCourseNumber("CSCI 221");
+        course.setProfessor("Dr. Buhler");
+        courses.add(course);
+
+        //String[] listItems = {"CSCI 230", "CSCI 490", "MUSC 101"};
+        //ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, courses);
+
+        CourseAdapter adapter = new CourseAdapter(this, courses);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
